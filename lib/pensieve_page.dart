@@ -28,9 +28,17 @@ class PensievePage extends StatelessWidget {
                 )
               : model.hasData
                   ? ListView.builder(
-                      itemBuilder: (context, index) => ThoughtWidget(
-                        thought: model.thoughts!.elementAt(index),
-                      ),
+                      itemBuilder: (context, index) {
+                        final current = model.thoughts!.elementAt(index);
+                        final uuid = current.uuid!;
+                        return Dismissible(
+                          key: ValueKey<String>(uuid),
+                          child: ThoughtWidget(
+                            thought: current,
+                          ),
+                          onDismissed: (direction) => model.deleteOne(uuid),
+                        );
+                      },
                       itemCount: model.thoughts!.length,
                     )
                   : const Text('Pensieve is empty'),

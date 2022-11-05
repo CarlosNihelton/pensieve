@@ -31,6 +31,12 @@ class PensieveModel extends ChangeNotifier {
     notifyListeners();
     return storage.write(key: key, value: content);
   }
+
+  Future<void> deleteOne(String uuid) {
+    _contents!.remove(uuid);
+    notifyListeners();
+    return storage.delete(key: uuid);
+  }
 }
 
 class Thought {
