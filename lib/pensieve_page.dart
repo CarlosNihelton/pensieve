@@ -134,7 +134,7 @@ class _ThoughtInputDialogState extends State<ThoughtInputDialog> {
             InputDatePickerFormField(
               firstDate: DateTime(-20000),
               lastDate: DateTime.now(),
-              onDateSubmitted: (value) => when = value,
+              onDateSaved: (value) => when = value,
               errorInvalidText:
                   'There are no known human phrases from that age.',
             ),
