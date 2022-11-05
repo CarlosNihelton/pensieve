@@ -85,10 +85,9 @@ class ThoughtWidget extends StatelessWidget {
             children: [
               Text(thought.who),
               const SizedBox(width: 40.0),
-              Text('${thought.when}'),
+              Text(thought.when.toString().substring(0, 10)),
             ],
           ),
-          Text(thought.uuid!),
         ],
       ),
     );
