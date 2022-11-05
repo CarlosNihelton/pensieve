@@ -133,6 +133,8 @@ class _ThoughtInputDialogState extends State<ThoughtInputDialog> {
                 labelText: 'What',
                 hintText: 'was said',
               ),
+              minLines: 1,
+              maxLines: 10,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'The name is required';
