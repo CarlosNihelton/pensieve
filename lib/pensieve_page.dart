@@ -79,7 +79,8 @@ class ThoughtWidget extends StatelessWidget {
               const SizedBox(width: 40.0),
               Text('${thought.when}'),
             ],
-          )
+          ),
+          Text(thought.uuid!),
         ],
       ),
     );
