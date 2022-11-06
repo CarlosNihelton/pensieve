@@ -1,0 +1,20 @@
+name: pensieve
+grade: stable
+confinement: strict
+base: core22
+version: '0.1'
+summary: 'A secure place to dump your secret ideas and citations.'
+description: 'Pensieve allows you to dump your own thoughts or phrases others said that are interesting or inspiring for
+  you in some sense but you do not want it readily available for others to look into'
+
+apps:
+  pensieve:
+    command: bin/pensieve
+    extensions: [gnome]
+
+parts:
+  pensieve:
+    plugin: flutter
+    source-type: git
+    source: https://github.com/CarlosNihelton/pensieve.git
+
