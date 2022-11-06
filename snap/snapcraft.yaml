@@ -17,4 +17,9 @@ parts:
     plugin: flutter
     source-type: git
     source: https://github.com/CarlosNihelton/pensieve.git
+    build-packages:
+      - libjsoncpp-dev
+      - libfreetype6-dev
+    stage-packages:
+      - libjsoncpp25
 
