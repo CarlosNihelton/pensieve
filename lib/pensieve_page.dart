@@ -2,6 +2,34 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'pensieve_model.dart';
 
+class PensieveAnimation extends StatefulWidget {
+  const PensieveAnimation({super.key, required this.child});
+  final Widget child;
+
+  @override
+  State<PensieveAnimation> createState() => _PensieveAnimationState();
+}
+
+class _PensieveAnimationState extends State<PensieveAnimation> {
+  double opacity = 1.0;
+  Widget currentChild = Image.asset('assets/pensieve.gif');
+  @override
+  void initState() {
+    Future.delayed(const Duration(milliseconds: 6000)).then(
+      (_) => setState(() => currentChild = widget.child),
+    );
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(seconds: 1),
+      child: currentChild,
+    );
+  }
+}
+
 class PensievePage extends StatelessWidget {
   final String title;
 
@@ -18,13 +46,15 @@ class PensievePage extends StatelessWidget {
         duration: const Duration(milliseconds: 350),
         child: Center(
           child: model.thoughts == null
-              ? ElevatedButton(
-                  onPressed: model.initStorage,
-                  style: ElevatedButton.styleFrom(
-                    shape: const CircleBorder(),
-                    padding: const EdgeInsets.all(32),
+              ? PensieveAnimation(
+                  child: ElevatedButton(
+                    onPressed: model.initStorage,
+                    style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      padding: const EdgeInsets.all(32),
+                    ),
+                    child: const Icon(Icons.lock_outlined, size: 96),
                   ),
-                  child: const Icon(Icons.lock_outlined, size: 96),
                 )
               : model.hasData
                   ? ListView.builder(
